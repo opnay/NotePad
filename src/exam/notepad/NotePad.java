@@ -22,7 +22,7 @@ public class NotePad extends JFrame {
 	private JMenuItem mFont;
 	
 	// helpMenu
-	private JMenuItem mHelper;
+	private JMenuItem mHelper, mAbout;
 	
 	public NotePad(String title) {
 		super(title);
@@ -78,8 +78,10 @@ public class NotePad extends JFrame {
 		viewMenu.add(mFont);
 		
 		mHelper = new JMenuItem("도움말");
+		mAbout = new JMenuItem("자세히");
 		
 		helpMenu.add(mHelper);
+		helpMenu.add(mAbout);
 		
 		this.setJMenuBar(menubar);
 		this.setSize(500,500);
