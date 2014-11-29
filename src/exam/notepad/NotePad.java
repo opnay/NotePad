@@ -18,7 +18,8 @@ public class NotePad extends JFrame {
 	private JMenuItem mUndo, mCut, mCopy, mPaste, mFind, mSelectAll;
 	
 	// viewMenu
-	private JCheckBoxMenuItem mLine, mStatus, mFont;
+	private JCheckBoxMenuItem mLine, mStatus;
+	private JMenuItem mFont;
 	
 	// helpMenu
 	private JMenuItem mHelper;
@@ -70,7 +71,7 @@ public class NotePad extends JFrame {
 		
 		mLine = new JCheckBoxMenuItem("자동 줄넘김");
 		mStatus = new JCheckBoxMenuItem("상태 표시줄");
-		mFont = new JCheckBoxMenuItem("폰트 설정");
+		mFont = new JMenuItem("폰트 설정");
 		
 		viewMenu.add(mLine);
 		viewMenu.add(mStatus);
