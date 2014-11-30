@@ -78,10 +78,10 @@ public class NotePad extends JFrame {
 		/**
 		 * Menu
 		 */
-		fileMenu = new JMenu("파일");
-		editMenu = new JMenu("편집");
-		viewMenu = new JMenu("보기");
-		helpMenu = new JMenu("도움말");
+		fileMenu = new JMenu("파일(F)");
+		editMenu = new JMenu("편집(E)");
+		viewMenu = new JMenu("보기(V)");
+		helpMenu = new JMenu("도움말(H)");
 		
 		menubar.add(fileMenu);
 		menubar.add(editMenu);
