@@ -29,6 +29,7 @@ public class NotePad extends JFrame {
 	// helpMenu
 	private JMenuItem mHelper, mAbout;
 	
+	// toolbar
 	private JToolBar toolbar;
 	private JButton tNew, tOpen, tSave, tExit;
 	private JButton tCut, tCopy, tPaste;
@@ -36,6 +37,7 @@ public class NotePad extends JFrame {
 	public NotePad(String title) {
 		super(title);
 		
+		// Menu
 		fileMenu = new JMenu("파일");
 		editMenu = new JMenu("편집");
 		viewMenu = new JMenu("보기");
@@ -94,6 +96,7 @@ public class NotePad extends JFrame {
 		
 		this.setJMenuBar(menubar);
 		
+		// ToolBar
 		toolbar = new JToolBar();
 		
 		tNew = new JButton(new ImageIcon("images/new.gif"));
