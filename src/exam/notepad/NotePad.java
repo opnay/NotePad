@@ -8,6 +8,7 @@ import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.InputEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -27,6 +28,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
+import javax.swing.KeyStroke;
 import javax.swing.event.UndoableEditEvent;
 import javax.swing.event.UndoableEditListener;
 import javax.swing.text.Document;
@@ -195,6 +197,30 @@ public class NotePad extends JFrame {
 		tCut.addActionListener(new EventHandler());
 		tCopy.addActionListener(new EventHandler());
 		tPaste.addActionListener(new EventHandler());
+
+		/**
+		 * Short cut key
+		 */
+		// 메뉴 단축키 Alt +
+		fileMenu.setMnemonic('F');
+		editMenu.setMnemonic('E');
+		viewMenu.setMnemonic('V');
+		helpMenu.setMnemonic('H');
+
+		// 단축키 Ctrl +
+		mNew.setAccelerator(KeyStroke.getKeyStroke('N', InputEvent.CTRL_MASK));
+		mOpen.setAccelerator(KeyStroke.getKeyStroke('O', InputEvent.CTRL_MASK));
+		mSave.setAccelerator(KeyStroke.getKeyStroke('S', InputEvent.CTRL_MASK));
+		mSaveAs.setAccelerator(KeyStroke.getKeyStroke('S', InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK));
+
+		mUndo.setAccelerator(KeyStroke.getKeyStroke('Z', InputEvent.CTRL_MASK));
+		mCut.setAccelerator(KeyStroke.getKeyStroke('X', InputEvent.CTRL_MASK));
+		mCopy.setAccelerator(KeyStroke.getKeyStroke('C', InputEvent.CTRL_MASK));
+		mPaste.setAccelerator(KeyStroke.getKeyStroke('P', InputEvent.CTRL_MASK));
+		mFind.setAccelerator(KeyStroke.getKeyStroke('F', InputEvent.CTRL_MASK));
+		mSelectAll.setAccelerator(KeyStroke.getKeyStroke('A', InputEvent.CTRL_MASK));
+		
+		mHelper.setAccelerator(KeyStroke.getKeyStroke('H', InputEvent.CTRL_MASK));
 		
 		/**
 		 * TextArea
