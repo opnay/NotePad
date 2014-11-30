@@ -4,10 +4,13 @@ import java.awt.BorderLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -197,6 +200,34 @@ public class NotePad extends JFrame {
 		curFile = null;
 	}
 	
+	public void openDocument() {
+		if(curFile == null) {
+			// 저장
+		}
+		
+		JFileChooser openChooser = new JFileChooser();
+		int openResult = openChooser.showOpenDialog(this);
+		
+		if(openResult == JFileChooser.APPROVE_OPTION) {
+			openFile(openChooser.getSelectedFile());
+		}
+	}
+	
+	public void openFile(File file) {
+		try {
+			Scanner sc = new Scanner(file);
+			txtArea.setText("");
+			while(sc.hasNext()) {
+				txtArea.append(sc.nextLine());
+			}
+			
+			sc.close();
+			curFile = file;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	class EventHandler implements	ActionListener {
 
 		@Override
@@ -208,7 +239,8 @@ public class NotePad extends JFrame {
 				newDocument();
 
 			// 열기
-			if(o.equals(mOpen) || o.equals(tOpen));
+			if(o.equals(mOpen) || o.equals(tOpen))
+				openDocument();
 			
 			// 저장
 			if(o.equals(mSave) || o.equals(tSave));
