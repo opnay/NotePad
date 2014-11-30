@@ -93,6 +93,7 @@ public class NotePad extends JFrame {
 		editMenu.add(mCopy);
 		editMenu.add(mPaste);
 		editMenu.add(mFind);
+		editMenu.addSeparator();
 		editMenu.add(mSelectAll);
 		
 		mLine = new JCheckBoxMenuItem("자동 줄넘김");
