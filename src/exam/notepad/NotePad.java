@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.PrintWriter;
 import java.util.Scanner;
 
 import javax.swing.ImageIcon;
@@ -227,6 +228,37 @@ public class NotePad extends JFrame {
 			e.printStackTrace();
 		}
 	}
+	public void saveDocument(boolean isSaved) {
+		if(!isSaved && curFile != null) {
+			// 저장, 덮어쓰기
+			saveFile(curFile);
+		} else {
+			// 다른이름으로 저장
+			saveAsDocument();
+		}
+	}
+	
+	public void saveAsDocument() {
+		JFileChooser chooser = new JFileChooser();
+		int result = chooser.showSaveDialog(this);
+		
+		if(result == JFileChooser.APPROVE_OPTION)
+			saveFile(chooser.getSelectedFile());
+		
+	}
+	
+	public void saveFile(File file) {
+		try {
+			PrintWriter mPrintWriter = new PrintWriter(file);
+			mPrintWriter.write(txtArea.getText());
+			mPrintWriter.flush();
+			
+			mPrintWriter.close();
+			curFile = file;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	class EventHandler implements	ActionListener {
 
@@ -243,10 +275,12 @@ public class NotePad extends JFrame {
 				openDocument();
 			
 			// 저장
-			if(o.equals(mSave) || o.equals(tSave));
+			if(o.equals(mSave) || o.equals(tSave))
+				saveDocument(false);
 			
 			// 다른이름으로 저장
-			if(o.equals(mSaveAs));
+			if(o.equals(mSaveAs))
+				saveDocument(true);
 			
 			// 종료
 			if(o.equals(mExit) || o.equals(tExit));
