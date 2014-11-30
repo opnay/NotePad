@@ -1,5 +1,6 @@
 package exam.notepad.dialog;
 
+import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -44,7 +45,6 @@ public class FindDialog extends JDialog {
 		super(parent);
 
 		this.txtArea = ((NotePad) parent).getTxtArea();
-		this.setLayout(new GridLayout(3, 0, 10, 10));
         
 		/**
 		 * 찾기
@@ -101,11 +101,15 @@ public class FindDialog extends JDialog {
 		pButton.add(btnReplace);
 		pButton.add(btnCancel);		
 		
-		this.add(pFind);
-		this.add(pOption);
-		this.add(pButton);
+		this.add(pFind, BorderLayout.NORTH);
+		this.add(pOption, BorderLayout.CENTER);
+		this.add(pButton, BorderLayout.SOUTH);
 		
-		this.setSize(300, 200);
+		this.setSize(250, 250);
+		// NotePad의 중앙에 위치
+		this.setLocation(
+				(int) parent.getLocation().getX() + (parent.getSize().width / 2) - (this.getSize().width / 2),
+				(int) parent.getLocation().getY() + (parent.getSize().width / 2) - (this.getSize().width / 2));		
 		this.setVisible(true);
 	}
 	
