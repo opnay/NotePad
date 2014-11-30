@@ -1,10 +1,16 @@
 package exam.notepad;
 
 import java.awt.BorderLayout;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.DataFlavor;
+import java.awt.datatransfer.StringSelection;
+import java.awt.datatransfer.Transferable;
+import java.awt.datatransfer.UnsupportedFlavorException;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
@@ -56,6 +62,9 @@ public class NotePad extends JFrame {
 	private JLabel status;
 	
 	private File curFile;
+	
+	// Clipboard
+	private Clipboard mClipboard = getToolkit().getSystemClipboard();
 	
 	// Undomanager
 	private Document editorDocument;
@@ -307,6 +316,17 @@ public class NotePad extends JFrame {
 		System.exit(0);
 	}
 	
+	public void copy() {
+		String data =txtArea.getSelectedText();
+		
+		// 선택된 텍스트가 없을때
+		if(data == null || data.length() <= 0)
+			return;
+		
+		StringSelection selection = new StringSelection(txtArea.getSelectedText());
+		mClipboard.setContents(selection,selection);
+	}
+	
 	class EventHandler implements	ActionListener {
 
 		@Override
@@ -344,13 +364,25 @@ public class NotePad extends JFrame {
 			}
 			
 			// 잘라내기
-			if(o.equals(mCut) || o.equals(tCut));
+			if(o.equals(mCut) || o.equals(tCut)) {
+				copy();
+				txtArea.replaceSelection("");
+			}
 			
 			// 복사하기
-			if(o.equals(mCopy) || o.equals(mCopy));
+			if(o.equals(mCopy) || o.equals(mCopy))
+				copy();
 			
 			// 붙여넣기
-			if(o.equals(mPaste) || o.equals(mPaste));
+			if(o.equals(mPaste) || o.equals(mPaste)) {
+				Transferable mClipData = mClipboard.getContents(NotePad.this);
+				try {
+					String clipData = (String) mClipData.getTransferData(DataFlavor.stringFlavor);
+					txtArea.replaceSelection(clipData);
+				} catch (UnsupportedFlavorException | IOException e1) {
+					e1.printStackTrace();
+				}
+			}
 			
 			// 찾기
 			if(o.equals(mFind));
