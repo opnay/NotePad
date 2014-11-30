@@ -35,6 +35,7 @@ import javax.swing.text.Document;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
+import exam.notepad.dialog.AboutDialog;
 import exam.notepad.dialog.FindDialog;
 import exam.notepad.dialog.FontDialog;
 
@@ -445,7 +446,8 @@ public class NotePad extends JFrame {
 			if(o.equals(mHelper));
 			
 			// 자세히
-			if(o.equals(mAbout));
+			if(o.equals(mAbout))
+				new AboutDialog(NotePad.this);
 			
 		}
 		
