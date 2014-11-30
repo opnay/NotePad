@@ -414,7 +414,10 @@ public class NotePad extends JFrame {
 			if(o.equals(mFind));
 			
 			// 전체선택
-			if(o.equals(mSelectAll));
+			if(o.equals(mSelectAll)) {
+				txtArea.setSelectionStart(0);
+				txtArea.setSelectionEnd(txtArea.getText().length());
+			}
 			
 			// 자동 줄바꿈
 			if(o.equals(mLine));
