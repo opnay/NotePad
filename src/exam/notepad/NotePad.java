@@ -1,10 +1,15 @@
 package exam.notepad;
 
+import java.awt.BorderLayout;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JToolBar;
 
 public class NotePad extends JFrame {
 	
@@ -23,6 +28,10 @@ public class NotePad extends JFrame {
 	
 	// helpMenu
 	private JMenuItem mHelper, mAbout;
+	
+	private JToolBar toolbar;
+	private JButton tNew, tOpen, tSave, tExit;
+	private JButton tCut, tCopy, tPaste;
 	
 	public NotePad(String title) {
 		super(title);
@@ -84,6 +93,31 @@ public class NotePad extends JFrame {
 		helpMenu.add(mAbout);
 		
 		this.setJMenuBar(menubar);
+		
+		toolbar = new JToolBar();
+		
+		tNew = new JButton(new ImageIcon("images/new.gif"));
+		tOpen = new JButton(new ImageIcon("images/open.gif"));
+		tSave = new JButton(new ImageIcon("images/save.gif"));
+		tExit = new JButton(new ImageIcon("images/exit.gif"));
+		tCut = new JButton(new ImageIcon("images/cut.gif"));
+		tCopy = new JButton(new ImageIcon("images/copy.gif"));
+		tPaste = new JButton(new ImageIcon("images/paste.gif"));
+		
+		toolbar.add(tNew);
+		toolbar.add(tOpen);
+		toolbar.add(tSave);
+		toolbar.addSeparator();
+		toolbar.add(tCut);
+		toolbar.add(tCopy);
+		toolbar.add(tPaste);
+		toolbar.addSeparator();
+		toolbar.add(tExit);
+		
+		toolbar.setFloatable(false);
+		
+		this.add(toolbar, BorderLayout.NORTH);
+		
 		this.setSize(500,500);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
