@@ -1,7 +1,10 @@
 package exam.notepad.dialog;
 
-import java.awt.BorderLayout;
+import java.awt.Component;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -23,10 +26,11 @@ import exam.notepad.NotePad;
 @SuppressWarnings("serial")
 public class FindDialog extends JDialog {
 	
+	private GridBagLayout gridbagLayout = new GridBagLayout();
+	private GridBagConstraints gridbagConstraints = new GridBagConstraints();
 	private JTextArea txtArea;
 	
 	// 찾기, 바꾸기
-	private JPanel pFind;
 	private JLabel lFind, lReplace;
 	private JTextField txtFind, txtReplace;
 	
@@ -44,24 +48,24 @@ public class FindDialog extends JDialog {
 	
 	public FindDialog(JFrame parent) {
 		super(parent);
-
+		
 		this.txtArea = ((NotePad) parent).getTxtArea();
-        
+		
+		this.setLayout(gridbagLayout);
+		
 		/**
 		 * 찾기
 		 */
 		lFind = new JLabel("찾기", JLabel.CENTER);
 		lReplace = new JLabel("바꾸기", JLabel.CENTER);
 		
-		txtFind = new JTextField();
-		txtReplace = new JTextField();
-
-		pFind = new JPanel(new GridLayout(2, 2));
+		txtFind = new JTextField(10);
+		txtReplace = new JTextField(10);
 		
-		pFind.add(lFind);
-		pFind.add(txtFind);
-		pFind.add(lReplace);
-		pFind.add(txtReplace);
+		this.add(lFind, 0, 0, 1, 1, 0.25, 1, GridBagConstraints.NONE);
+		this.add(txtFind, 1, 0, 1, 1, 2, 1, GridBagConstraints.BOTH);
+		this.add(lReplace, 0, 1, 1, 1, 0.25, 1, GridBagConstraints.NONE);
+		this.add(txtReplace, 1, 1, 1, 1, 2, 1, GridBagConstraints.BOTH);
 		
 		/**
 		 * 옵션
@@ -86,6 +90,8 @@ public class FindDialog extends JDialog {
 		titledBorder = new TitledBorder("옵션");
 		pOption.setBorder(titledBorder);
 		
+		this.add(pOption, 0, 2, 2, 1, 1, 1, GridBagConstraints.BOTH);
+		
 		/**
 		 * 버튼
 		 */
@@ -97,28 +103,26 @@ public class FindDialog extends JDialog {
 		btnReplace.addActionListener(new EventHandler());
 		btnCancel.addActionListener(new EventHandler());
 		
-		pButton = new JPanel(new GridLayout(0, 3, 10, 10));
+		pButton = new JPanel(new GridLayout(3, 0, 10, 10));
 		pButton.add(btnFind);
 		pButton.add(btnReplace);
-		pButton.add(btnCancel);		
+		pButton.add(btnCancel);	
 		
-		this.add(pFind, BorderLayout.NORTH);
-		this.add(pOption, BorderLayout.CENTER);
-		this.add(pButton, BorderLayout.SOUTH);
+		this.add(pButton, 2, 0, 1, 3, 1, 1, GridBagConstraints.NONE);
 		
-		this.setSize(250, 250);
+		this.setSize(400, 200);
 		// NotePad의 중앙에 위치
 		this.setLocation(
 				(int) parent.getLocation().getX() + (parent.getSize().width / 2) - (this.getSize().width / 2),
 				(int) parent.getLocation().getY() + (parent.getSize().height / 2) - (this.getSize().height / 2));
-		this.setResizable(false);
+		//this.setResizable(false);
 		this.setVisible(true);
 	}
 	
 	public void findOperation() {
 		// 찾는 단어
 		String strFind = txtFind.getText();
-
+		
 		// 현재 커서 위치
 		int curCursorStart = txtArea.getSelectionStart();
 		int curCursorEnd = txtArea.getSelectionEnd();
@@ -176,7 +180,7 @@ public class FindDialog extends JDialog {
 	
 	public void replaceOperation() {
 		findOperation();
-		 
+		
 		if(txtFind.getText().equals(txtArea.getSelectedText())) {
 			int curCursorStart = txtArea.getSelectionStart();
 			txtArea.replaceSelection(txtReplace.getText());
@@ -185,8 +189,20 @@ public class FindDialog extends JDialog {
 		}
 	}
 	
+	public void add(Component component, int x, int y, int width, int height, double weightx, double weighty, int fill) {
+		gridbagConstraints.gridx = x;
+		gridbagConstraints.gridy = y;
+		gridbagConstraints.gridwidth = width;
+		gridbagConstraints.gridheight = height;
+		gridbagConstraints.weightx = weightx;
+		gridbagConstraints.weighty = weighty;
+		gridbagConstraints.fill = fill;
+		gridbagConstraints.insets = new Insets(1, 1, 1, 1);
+		add(component, gridbagConstraints);
+	}
+	
 	class EventHandler implements ActionListener {
-
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object o = e.getSource();
