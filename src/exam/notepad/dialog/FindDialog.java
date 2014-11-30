@@ -109,7 +109,7 @@ public class FindDialog extends JDialog {
 		// NotePad의 중앙에 위치
 		this.setLocation(
 				(int) parent.getLocation().getX() + (parent.getSize().width / 2) - (this.getSize().width / 2),
-				(int) parent.getLocation().getY() + (parent.getSize().width / 2) - (this.getSize().width / 2));		
+				(int) parent.getLocation().getY() + (parent.getSize().height / 2) - (this.getSize().height / 2));
 		this.setVisible(true);
 	}
 	
