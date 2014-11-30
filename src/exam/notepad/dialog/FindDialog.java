@@ -20,6 +20,7 @@ import javax.swing.border.TitledBorder;
 
 import exam.notepad.NotePad;
 
+@SuppressWarnings("serial")
 public class FindDialog extends JDialog {
 	
 	private JTextArea txtArea;

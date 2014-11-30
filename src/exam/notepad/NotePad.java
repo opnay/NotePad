@@ -39,6 +39,7 @@ import exam.notepad.dialog.AboutDialog;
 import exam.notepad.dialog.FindDialog;
 import exam.notepad.dialog.FontDialog;
 
+@SuppressWarnings("serial")
 public class NotePad extends JFrame {
 	
 	private JMenuBar menubar = new JMenuBar();
@@ -349,7 +350,7 @@ public class NotePad extends JFrame {
 	}
 	
 	public void copy() {
-		String data =txtArea.getSelectedText();
+		String data = txtArea.getSelectedText();
 		
 		// 선택된 텍스트가 없을때
 		if(data == null || data.length() <= 0)

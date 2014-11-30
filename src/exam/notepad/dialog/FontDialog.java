@@ -23,6 +23,7 @@ import javax.swing.event.ListSelectionListener;
 
 import exam.notepad.NotePad;
 
+@SuppressWarnings("serial")
 public class FontDialog extends JDialog {
 	
 	private JTextArea txtArea;
@@ -54,9 +55,7 @@ public class FontDialog extends JDialog {
 		curFont = txtArea.getFont();
 		
 		// 시스템 폰트 리스트 받기
-		FONT_NAMES = GraphicsEnvironment
-				.getLocalGraphicsEnvironment()
-				.getAvailableFontFamilyNames();
+		FONT_NAMES = GraphicsEnvironment.getLocalGraphicsEnvironment().getAvailableFontFamilyNames();
 		
 		// 라벨 및 텍스트 필드
 		lFontName = new JLabel("폰트", SwingConstants.CENTER);
@@ -97,8 +96,6 @@ public class FontDialog extends JDialog {
 		listFontStyle.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listFontSize.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
-		System.out.println(curFont.getFontName() + " " + curFont.getSize() + " " + curFont.getStyle());
-		
 		pList = new JPanel(new GridLayout(0, 3, 10, 10));
 		pList.add(listFontName);
 		pList.add(listFontStyle);
@@ -130,14 +127,13 @@ public class FontDialog extends JDialog {
 		
 		listFontName.setSelectedValue(curName, true);
 		listFontStyle.setSelectedIndex(curStyle);
-		//listFontStyle.setSelectedIndex(curFont.getStyle());
 		listFontSize.setSelectedValue(Integer.toString(curSize), true);
 		
 		this.add(pLabel, BorderLayout.NORTH);
 		this.add(pList, BorderLayout.CENTER);
 		this.add(pBottom, BorderLayout.SOUTH);
 		
-		this.setSize(300, 400);
+		this.setSize(350, 400);
 		// NotePad의 중앙에 위치
 		this.setLocation(
 				(int) parent.getLocation().getX() + (parent.getSize().width / 2) - (this.getSize().width / 2),
@@ -148,7 +144,6 @@ public class FontDialog extends JDialog {
 	public void updateFont() {
 		String fontName = listFontName.getSelectedValue();
 		String fontSize = listFontSize.getSelectedValue();
-
 		int fontStyle = listFontStyle.getSelectedIndex();
 		
 		if(fontSize == null)
@@ -200,7 +195,6 @@ public class FontDialog extends JDialog {
 			
 			if(o.equals(btnCancel))
 				dispose();
-			
 		}
 		
 	}
