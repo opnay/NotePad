@@ -188,6 +188,15 @@ public class NotePad extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
+	public void newDocument() {
+		if(curFile == null) {
+			// 저장
+		}
+		
+		txtArea.setText("");
+		curFile = null;
+	}
+	
 	class EventHandler implements	ActionListener {
 
 		@Override
@@ -195,7 +204,8 @@ public class NotePad extends JFrame {
 			Object o = e.getSource();
 			
 			// 새문서
-			if(o.equals(mNew) || o.equals(tNew));
+			if(o.equals(mNew) || o.equals(tNew))
+				newDocument();
 
 			// 열기
 			if(o.equals(mOpen) || o.equals(tOpen));
