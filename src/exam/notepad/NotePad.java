@@ -48,7 +48,9 @@ public class NotePad extends JFrame {
 	public NotePad(String title) {
 		super(title);
 		
-		// Menu
+		/**
+		 * Menu
+		 */
 		fileMenu = new JMenu("파일");
 		editMenu = new JMenu("편집");
 		viewMenu = new JMenu("보기");
@@ -107,7 +109,9 @@ public class NotePad extends JFrame {
 		
 		this.setJMenuBar(menubar);
 		
-		// ToolBar
+		/**
+		 * ToolBar
+		 */
 		toolbar = new JToolBar();
 		
 		tNew = new JButton(new ImageIcon("images/new.gif"));
@@ -132,7 +136,9 @@ public class NotePad extends JFrame {
 		
 		this.add(toolbar, BorderLayout.NORTH);
 		
-		// txtArea
+		/**
+		 * TextArea
+		 */
 		txtArea = new JTextArea();
 		jsp = new JScrollPane(txtArea);
 		status = new JLabel("NotePad");
