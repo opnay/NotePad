@@ -110,6 +110,7 @@ public class FindDialog extends JDialog {
 		this.setLocation(
 				(int) parent.getLocation().getX() + (parent.getSize().width / 2) - (this.getSize().width / 2),
 				(int) parent.getLocation().getY() + (parent.getSize().height / 2) - (this.getSize().height / 2));
+		this.setResizable(false);
 		this.setVisible(true);
 	}
 	
