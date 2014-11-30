@@ -36,6 +36,7 @@ import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
 import exam.notepad.dialog.FindDialog;
+import exam.notepad.dialog.FontDialog;
 
 public class NotePad extends JFrame {
 	
@@ -437,7 +438,8 @@ public class NotePad extends JFrame {
 				status.setVisible(mStatus.getState());
 			
 			// 폰트
-			if(o.equals(mFont));
+			if(o.equals(mFont))
+				new FontDialog(NotePad.this);
 			
 			// 도움말
 			if(o.equals(mHelper));
