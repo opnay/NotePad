@@ -17,6 +17,7 @@ import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
@@ -193,8 +194,14 @@ public class NotePad extends JFrame {
 	}
 	
 	public void newDocument() {
-		if(curFile == null) {
-			// 저장
+		if(!txtArea.getText().isEmpty()) {
+			int result = JOptionPane
+					.showConfirmDialog(this, "파일을 저장하시겠습니까?", "저장", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+			
+			if(result == JOptionPane.YES_OPTION)
+				saveDocument(false);
+			else if(result == JOptionPane.CANCEL_OPTION)
+				return;
 		}
 		
 		txtArea.setText("");
@@ -202,8 +209,14 @@ public class NotePad extends JFrame {
 	}
 	
 	public void openDocument() {
-		if(curFile == null) {
-			// 저장
+		if(!txtArea.getText().isEmpty()) {
+			int result = JOptionPane
+					.showConfirmDialog(this, "파일을 저장하시겠습니까?", "저장", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+			
+			if(result == JOptionPane.YES_OPTION)
+				saveDocument(false);
+			else if(result == JOptionPane.CANCEL_OPTION)
+				return;
 		}
 		
 		JFileChooser openChooser = new JFileChooser();
