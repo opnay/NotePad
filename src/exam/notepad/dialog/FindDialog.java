@@ -68,6 +68,8 @@ public class FindDialog extends JDialog {
 		rbUp = new JRadioButton("위로 찾기");
 		rbDown = new JRadioButton("아래로 찾기");
 		
+		cbUpper = new JCheckBox("대소문자 구분");
+		
 		//아래로 찾기 기본값
 		rbDown.setSelected(true);
 		
@@ -75,9 +77,10 @@ public class FindDialog extends JDialog {
 		gOption.add(rbUp);
 		gOption.add(rbDown);
 		
-		pOption = new JPanel();
+		pOption = new JPanel(new GridLayout(2, 2));
 		pOption.add(rbUp);
 		pOption.add(rbDown);
+		pOption.add(cbUpper);
 		
 		titledBorder = new TitledBorder("옵션");
 		pOption.setBorder(titledBorder);
@@ -118,7 +121,13 @@ public class FindDialog extends JDialog {
 			// 찾는 범위
 			String curText = txtArea.getText().substring(curCursorEnd, txtArea.getText().length());
 			
-			int index = curText.indexOf(strFind);
+			int index;
+			// 대소문자 구분 옵션
+			if(cbUpper.isSelected())
+				index = curText.indexOf(strFind);
+			else
+				index = curText.toLowerCase().indexOf(strFind.toLowerCase());
+			
 			int strIndex = index + txtArea.getSelectionEnd();
 			if(index >= 0) {
 				txtArea.setSelectionStart(strIndex);
@@ -135,7 +144,14 @@ public class FindDialog extends JDialog {
 				curText = txtArea.getText().substring(index, curCursorStart);
 				// 이전에 찾은 index값.
 				strIndex = index;
-				index = curText.indexOf(strFind);
+				
+				// 대소문자 구분 옵션
+				if(cbUpper.isSelected())
+					index = curText.indexOf(strFind);
+				else
+					index = curText.toLowerCase().indexOf(strFind.toLowerCase());
+				
+				// 더이상 못찾을 경우
 				if(index < 0)
 					break;
 				
