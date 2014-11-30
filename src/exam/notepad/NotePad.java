@@ -1,6 +1,8 @@
 package exam.notepad;
 
 import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.File;
 
 import javax.swing.ImageIcon;
@@ -137,6 +139,40 @@ public class NotePad extends JFrame {
 		this.add(toolbar, BorderLayout.NORTH);
 		
 		/**
+		 * AddListener
+		 */
+		
+		mNew.addActionListener(new EventHandler());
+		mOpen.addActionListener(new EventHandler());
+		mSave.addActionListener(new EventHandler());
+		mSaveAs.addActionListener(new EventHandler());
+		mExit.addActionListener(new EventHandler());
+
+		mUndo.addActionListener(new EventHandler());
+		mCut.addActionListener(new EventHandler());
+		mCopy.addActionListener(new EventHandler());
+		mPaste.addActionListener(new EventHandler());
+		
+		mFind.addActionListener(new EventHandler());
+		mSelectAll.addActionListener(new EventHandler());
+
+		mLine.addActionListener(new EventHandler());
+		mStatus.addActionListener(new EventHandler());
+
+		mFont.addActionListener(new EventHandler());
+		mHelper.addActionListener(new EventHandler());
+		mAbout.addActionListener(new EventHandler());
+
+		tNew.addActionListener(new EventHandler());
+		tOpen.addActionListener(new EventHandler());
+		tSave.addActionListener(new EventHandler());
+		tExit.addActionListener(new EventHandler());
+
+		tCut.addActionListener(new EventHandler());
+		tCopy.addActionListener(new EventHandler());
+		tPaste.addActionListener(new EventHandler());
+		
+		/**
 		 * TextArea
 		 */
 		txtArea = new JTextArea();
@@ -149,6 +185,64 @@ public class NotePad extends JFrame {
 		this.setSize(500,500);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+	
+	class EventHandler implements	ActionListener {
+
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			Object o = e.getSource();
+			
+			// 새문서
+			if(o.equals(mNew) || o.equals(tNew));
+
+			// 열기
+			if(o.equals(mOpen) || o.equals(tOpen));
+			
+			// 저장
+			if(o.equals(mSave) || o.equals(tSave));
+			
+			// 다른이름으로 저장
+			if(o.equals(mSaveAs));
+			
+			// 종료
+			if(o.equals(mExit) || o.equals(tExit));
+			
+			// 실행취소
+			if(o.equals(mUndo));
+			
+			// 잘라내기
+			if(o.equals(mCut) || o.equals(tCut));
+			
+			// 복사하기
+			if(o.equals(mCopy) || o.equals(mCopy));
+			
+			// 붙여넣기
+			if(o.equals(mPaste) || o.equals(mPaste));
+			
+			// 찾기
+			if(o.equals(mFind));
+			
+			// 전체선택
+			if(o.equals(mSelectAll));
+			
+			// 자동 줄바꿈
+			if(o.equals(mLine));
+			
+			// 상태 표시줄
+			if(o.equals(mStatus));
+			
+			// 폰트
+			if(o.equals(mFont));
+			
+			// 도움말
+			if(o.equals(mHelper));
+			
+			// 자세히
+			if(o.equals(mAbout));
+			
+		}
+		
 	}
 	
 }
