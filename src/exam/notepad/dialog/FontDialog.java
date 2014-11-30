@@ -88,13 +88,13 @@ public class FontDialog extends JDialog {
 		listFontName.setVisibleRowCount(10);
 		listFontSize.setVisibleRowCount(10);
 		
-		listFontName.addListSelectionListener(new ListHandler());
-		listFontStyle.addListSelectionListener(new ListHandler());
-		listFontSize.addListSelectionListener(new ListHandler());
-		
 		listFontName.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listFontStyle.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listFontSize.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		
+		listFontName.addListSelectionListener(new ListHandler());
+		listFontStyle.addListSelectionListener(new ListHandler());
+		listFontSize.addListSelectionListener(new ListHandler());
 		
 		pList = new JPanel(new GridLayout(0, 3, 10, 10));
 		pList.add(listFontName);
@@ -125,6 +125,9 @@ public class FontDialog extends JDialog {
 		curStyle = curFont.getStyle();
 		curSize = curFont.getSize();
 		
+		txtFontName.setText(curName);
+		txtFontStyle.setText(FONT_STYLE[curStyle]);
+		txtFontSize.setText(Integer.toString(curSize));
 		listFontName.setSelectedValue(curName, true);
 		listFontStyle.setSelectedIndex(curStyle);
 		listFontSize.setSelectedValue(Integer.toString(curSize), true);
@@ -142,11 +145,11 @@ public class FontDialog extends JDialog {
 	}
 	
 	public void updateFont() {
-		String fontName = listFontName.getSelectedValue();
-		String fontSize = listFontSize.getSelectedValue();
+		String fontName = txtFontName.getText();
+		String fontSize = txtFontSize.getText();
 		int fontStyle = listFontStyle.getSelectedIndex();
 		
-		if(fontSize == null)
+		if(fontSize == null || fontSize == "")
 			fontSize = "10";
 		
 		curFont = new Font(fontName, fontStyle, Integer.parseInt(fontSize));
