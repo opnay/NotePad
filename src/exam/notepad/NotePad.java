@@ -21,6 +21,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JToolBar;
+import javax.swing.event.UndoableEditEvent;
+import javax.swing.event.UndoableEditListener;
+import javax.swing.text.Document;
+import javax.swing.undo.CannotUndoException;
+import javax.swing.undo.UndoManager;
 
 public class NotePad extends JFrame {
 	
@@ -51,6 +56,10 @@ public class NotePad extends JFrame {
 	private JLabel status;
 	
 	private File curFile;
+	
+	// Undomanager
+	private Document editorDocument;
+	private UndoManager mUndoManager = new UndoManager();
 	
 	public NotePad(String title) {
 		super(title);
@@ -188,6 +197,17 @@ public class NotePad extends JFrame {
 		this.add(jsp, BorderLayout.CENTER);
 		this.add(status, BorderLayout.SOUTH);
 
+		// UndoManager
+		editorDocument = txtArea.getDocument();
+		editorDocument.addUndoableEditListener(new UndoableEditListener() {
+
+			@Override
+			public void undoableEditHappened(UndoableEditEvent e) {
+				mUndoManager.addEdit(e.getEdit());
+			}
+			
+		});
+		
 		this.setSize(500,500);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -314,7 +334,14 @@ public class NotePad extends JFrame {
 				exit();
 			
 			// 실행취소
-			if(o.equals(mUndo));
+			if(o.equals(mUndo)) {
+				try {
+					if(mUndoManager.canUndo())
+						mUndoManager.undo();
+				} catch (CannotUndoException exception) {
+					System.out.println(exception.getMessage());
+				}
+			}
 			
 			// 잘라내기
 			if(o.equals(mCut) || o.equals(tCut));
