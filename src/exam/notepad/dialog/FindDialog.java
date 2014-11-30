@@ -56,16 +56,16 @@ public class FindDialog extends JDialog {
 		/**
 		 * 찾기
 		 */
-		lFind = new JLabel("찾기", JLabel.CENTER);
-		lReplace = new JLabel("바꾸기", JLabel.CENTER);
+		lFind = new JLabel("찾기");
+		lReplace = new JLabel("바꾸기");
 		
 		txtFind = new JTextField(10);
 		txtReplace = new JTextField(10);
 		
-		this.add(lFind, 0, 0, 1, 1, 0.25, 1, GridBagConstraints.NONE);
-		this.add(txtFind, 1, 0, 1, 1, 2, 1, GridBagConstraints.BOTH);
-		this.add(lReplace, 0, 1, 1, 1, 0.25, 1, GridBagConstraints.NONE);
-		this.add(txtReplace, 1, 1, 1, 1, 2, 1, GridBagConstraints.BOTH);
+		this.add(lFind, 0, 0, 1, 1, 0.25, 1, GridBagConstraints.NONE, new Insets(5, 5, 5, 5));
+		this.add(txtFind, 1, 0, 1, 1, 2, 1, GridBagConstraints.BOTH, new Insets(10, 5, 10, 5));
+		this.add(lReplace, 0, 1, 1, 1, 0.25, 1, GridBagConstraints.NONE, new Insets(5, 5, 5, 5));
+		this.add(txtReplace, 1, 1, 1, 1, 2, 1, GridBagConstraints.BOTH, new Insets(10, 5, 10, 5));
 		
 		/**
 		 * 옵션
@@ -90,7 +90,7 @@ public class FindDialog extends JDialog {
 		titledBorder = new TitledBorder("옵션");
 		pOption.setBorder(titledBorder);
 		
-		this.add(pOption, 0, 2, 2, 1, 1, 1, GridBagConstraints.BOTH);
+		this.add(pOption, 0, 2, 2, 2, 1, 1, GridBagConstraints.BOTH);
 		
 		/**
 		 * 버튼
@@ -108,9 +108,10 @@ public class FindDialog extends JDialog {
 		pButton.add(btnReplace);
 		pButton.add(btnCancel);	
 		
-		this.add(pButton, 2, 0, 1, 3, 1, 1, GridBagConstraints.NONE);
+		this.add(pButton, 2, 0, 1, 4, 1, 1, GridBagConstraints.NONE);
 		
-		this.setSize(400, 200);
+		this.setTitle("찾기");
+		this.setSize(450, 250);
 		// NotePad의 중앙에 위치
 		this.setLocation(
 				(int) parent.getLocation().getX() + (parent.getSize().width / 2) - (this.getSize().width / 2),
@@ -197,7 +198,19 @@ public class FindDialog extends JDialog {
 		gridbagConstraints.weightx = weightx;
 		gridbagConstraints.weighty = weighty;
 		gridbagConstraints.fill = fill;
-		gridbagConstraints.insets = new Insets(1, 1, 1, 1);
+		gridbagConstraints.insets = new Insets(15, 15, 15, 15);
+		add(component, gridbagConstraints);
+	}
+	
+	public void add(Component component, int x, int y, int width, int height, double weightx, double weighty, int fill, Insets inset) {
+		gridbagConstraints.gridx = x;
+		gridbagConstraints.gridy = y;
+		gridbagConstraints.gridwidth = width;
+		gridbagConstraints.gridheight = height;
+		gridbagConstraints.weightx = weightx;
+		gridbagConstraints.weighty = weighty;
+		gridbagConstraints.fill = fill;
+		gridbagConstraints.insets = inset;
 		add(component, gridbagConstraints);
 	}
 	
