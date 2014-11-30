@@ -12,6 +12,7 @@ import javax.swing.JDialog;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -65,6 +66,10 @@ public class FontDialog extends JDialog {
 		txtFontName = new JTextField();
 		txtFontStyle = new JTextField();
 		txtFontSize = new JTextField();
+		
+		txtFontName.addActionListener(new EventHandler());
+		txtFontStyle.addActionListener(new EventHandler());
+		txtFontSize.addActionListener(new EventHandler());
 
 		pLabel = new JPanel(new GridLayout(2, 3, 10, 10));
 		pLabel.add(lFontName);
@@ -191,6 +196,44 @@ public class FontDialog extends JDialog {
 		public void actionPerformed(ActionEvent e) {
 			Object o = e.getSource();
 
+			if(o.equals(txtFontName)) {
+				for(String font : FONT_NAMES) {
+					if(font.toLowerCase().indexOf(txtFontName.getText().toLowerCase()) == 0) {
+						listFontName.setSelectedValue(font, true);
+						break;
+					}
+				}
+				
+				if(txtFontName.getText().equals(listFontName.getSelectedValue()))
+					updateFont();
+				else {
+					 JOptionPane.showMessageDialog(FontDialog.this, "찾는 폰트가 없습니다.");
+					 txtFontName.setText(listFontName.getSelectedValue());
+				}
+			}
+
+			if(o.equals(txtFontStyle)) {
+				for(String style : FONT_STYLE) {
+					if(style.toLowerCase().indexOf(txtFontStyle.getText().toLowerCase()) == 0) {
+						listFontStyle.setSelectedValue(style, true);
+						break;
+					}
+				}
+				
+				updateFont();
+			}
+
+			if(o.equals(txtFontSize)) {
+				for(String size : FONT_SIZE) {
+					if(size.toLowerCase().indexOf(txtFontSize.getText().toLowerCase()) == 0) {
+						listFontSize.setSelectedValue(size, true);
+						break;
+					}
+				}
+				
+				updateFont();
+			}
+			
 			if(o.equals(btnOk)) {
 				applyFont();
 				dispose();
