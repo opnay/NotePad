@@ -1,6 +1,8 @@
 package exam.notepad.dialog;
 
 import java.awt.BorderLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -16,28 +18,31 @@ public class AboutDialog extends JDialog {
 	
 	private JPanel mPanel;
 	
-	private JLabel name;
+	private JLabel title, name;
 	
 	private JButton btnOk;
 	
 	public AboutDialog(JFrame parent) {
 		super(parent);
-		
-		mPanel = new JPanel();
-		
+
+		title = new JLabel("NotePad", SwingConstants.CENTER);
 		name = new JLabel("Made By OPNay(김인섭)", SwingConstants.CENTER);
 		
+		title.setFont(new Font("Default", Font.BOLD, 25));
+		
+		mPanel = new JPanel(new GridLayout(2,1));
+		mPanel.add(title);
 		mPanel.add(name);
 		
 		btnOk = new JButton("확인");
 		btnOk.addActionListener(new EventHandler());
-
 		
 		this.add(mPanel, BorderLayout.CENTER);
 		this.add(btnOk, BorderLayout.SOUTH);
 		this.setModalityType (ModalityType.APPLICATION_MODAL);
 		this.setSize(300, 150);
 		this.setResizable(false);
+		
 		// NotePad의 중앙에 위치
 		this.setLocation(
 				(int) parent.getLocation().getX() + (parent.getSize().width / 2) - (this.getSize().width / 2),
@@ -46,7 +51,7 @@ public class AboutDialog extends JDialog {
 	}
 	
 	class EventHandler implements ActionListener {
-
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			dispose();
