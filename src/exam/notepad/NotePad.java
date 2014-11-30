@@ -1,14 +1,18 @@
 package exam.notepad;
 
 import java.awt.BorderLayout;
+import java.io.File;
 
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JCheckBoxMenuItem;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
 import javax.swing.JToolBar;
 
 public class NotePad extends JFrame {
@@ -33,6 +37,13 @@ public class NotePad extends JFrame {
 	private JToolBar toolbar;
 	private JButton tNew, tOpen, tSave, tExit;
 	private JButton tCut, tCopy, tPaste;
+	
+	// textArea
+	private JTextArea txtArea;
+	private JScrollPane jsp;
+	private JLabel status;
+	
+	private File curFile;
 	
 	public NotePad(String title) {
 		super(title);
@@ -121,6 +132,14 @@ public class NotePad extends JFrame {
 		
 		this.add(toolbar, BorderLayout.NORTH);
 		
+		// txtArea
+		txtArea = new JTextArea();
+		jsp = new JScrollPane(txtArea);
+		status = new JLabel("NotePad");
+		
+		this.add(jsp, BorderLayout.CENTER);
+		this.add(status, BorderLayout.SOUTH);
+
 		this.setSize(500,500);
 		this.setVisible(true);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
