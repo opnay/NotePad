@@ -273,6 +273,20 @@ public class NotePad extends JFrame {
 		}
 	}
 	
+	public void exit() {
+		if(!txtArea.getText().isEmpty()) {
+			int result = JOptionPane
+					.showConfirmDialog(this, "파일을 저장하시겠습니까?", "저장", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
+			
+			if(result == JOptionPane.YES_OPTION)
+				saveDocument(false);
+			else if(result == JOptionPane.CANCEL_OPTION)
+				return;
+		}
+		
+		System.exit(0);
+	}
+	
 	class EventHandler implements	ActionListener {
 
 		@Override
@@ -296,7 +310,8 @@ public class NotePad extends JFrame {
 				saveDocument(true);
 			
 			// 종료
-			if(o.equals(mExit) || o.equals(tExit));
+			if(o.equals(mExit) || o.equals(tExit))
+				exit();
 			
 			// 실행취소
 			if(o.equals(mUndo));
