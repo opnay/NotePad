@@ -231,6 +231,8 @@ public class NotePad extends JFrame {
 		
 		this.add(jsp, BorderLayout.CENTER);
 		this.add(status, BorderLayout.SOUTH);
+		// 상태표시줄 표시. (기본값)
+		mStatus.setState(true);
 
 		// UndoManager
 		editorDocument = txtArea.getDocument();
