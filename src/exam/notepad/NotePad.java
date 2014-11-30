@@ -420,10 +420,12 @@ public class NotePad extends JFrame {
 			}
 			
 			// 자동 줄바꿈
-			if(o.equals(mLine));
+			if(o.equals(mLine))
+				txtArea.setLineWrap(mLine.getState());
 			
 			// 상태 표시줄
-			if(o.equals(mStatus));
+			if(o.equals(mStatus))
+				status.setVisible(mStatus.getState());
 			
 			// 폰트
 			if(o.equals(mFont));
