@@ -44,7 +44,7 @@ public class NotePad extends JFrame {
 	
 	private JMenuBar menubar = new JMenuBar();
 	private JMenu fileMenu, editMenu, viewMenu, helpMenu;
-
+	
 	// fileMenu
 	private JMenuItem mNew, mOpen, mSave, mSaveAs, mPage, mPrint, mExit;
 	
@@ -178,7 +178,7 @@ public class NotePad extends JFrame {
 		mSave.addActionListener(new EventHandler());
 		mSaveAs.addActionListener(new EventHandler());
 		mExit.addActionListener(new EventHandler());
-
+		
 		mUndo.addActionListener(new EventHandler());
 		mCut.addActionListener(new EventHandler());
 		mCopy.addActionListener(new EventHandler());
@@ -186,23 +186,23 @@ public class NotePad extends JFrame {
 		
 		mFind.addActionListener(new EventHandler());
 		mSelectAll.addActionListener(new EventHandler());
-
+		
 		mLine.addActionListener(new EventHandler());
 		mStatus.addActionListener(new EventHandler());
-
+		
 		mFont.addActionListener(new EventHandler());
 		mHelper.addActionListener(new EventHandler());
 		mAbout.addActionListener(new EventHandler());
-
+		
 		tNew.addActionListener(new EventHandler());
 		tOpen.addActionListener(new EventHandler());
 		tSave.addActionListener(new EventHandler());
 		tExit.addActionListener(new EventHandler());
-
+		
 		tCut.addActionListener(new EventHandler());
 		tCopy.addActionListener(new EventHandler());
 		tPaste.addActionListener(new EventHandler());
-
+		
 		/**
 		 * Short cut key
 		 */
@@ -211,13 +211,13 @@ public class NotePad extends JFrame {
 		editMenu.setMnemonic('E');
 		viewMenu.setMnemonic('V');
 		helpMenu.setMnemonic('H');
-
+		
 		// 단축키 Ctrl +
 		mNew.setAccelerator(KeyStroke.getKeyStroke('N', InputEvent.CTRL_MASK));
 		mOpen.setAccelerator(KeyStroke.getKeyStroke('O', InputEvent.CTRL_MASK));
 		mSave.setAccelerator(KeyStroke.getKeyStroke('S', InputEvent.CTRL_MASK));
 		mSaveAs.setAccelerator(KeyStroke.getKeyStroke('S', InputEvent.SHIFT_MASK + InputEvent.CTRL_MASK));
-
+		
 		mUndo.setAccelerator(KeyStroke.getKeyStroke('Z', InputEvent.CTRL_MASK));
 		mCut.setAccelerator(KeyStroke.getKeyStroke('X', InputEvent.CTRL_MASK));
 		mCopy.setAccelerator(KeyStroke.getKeyStroke('C', InputEvent.CTRL_MASK));
@@ -238,11 +238,11 @@ public class NotePad extends JFrame {
 		this.add(status, BorderLayout.SOUTH);
 		// 상태표시줄 표시. (기본값)
 		mStatus.setState(true);
-
+		
 		// UndoManager
 		editorDocument = txtArea.getDocument();
 		editorDocument.addUndoableEditListener(new UndoableEditListener() {
-
+			
 			@Override
 			public void undoableEditHappened(UndoableEditEvent e) {
 				mUndoManager.addEdit(e.getEdit());
@@ -303,6 +303,7 @@ public class NotePad extends JFrame {
 			e.printStackTrace();
 		}
 	}
+	
 	public void saveDocument(boolean isSaved) {
 		if(!isSaved && curFile != null) {
 			// 저장, 덮어쓰기
@@ -319,7 +320,6 @@ public class NotePad extends JFrame {
 		
 		if(result == JFileChooser.APPROVE_OPTION)
 			saveFile(chooser.getSelectedFile());
-		
 	}
 	
 	public void saveFile(File file) {
@@ -365,7 +365,7 @@ public class NotePad extends JFrame {
 	}
 	
 	class EventHandler implements	ActionListener {
-
+		
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			Object o = e.getSource();
@@ -373,7 +373,7 @@ public class NotePad extends JFrame {
 			// 새문서
 			if(o.equals(mNew) || o.equals(tNew))
 				newDocument();
-
+			
 			// 열기
 			if(o.equals(mOpen) || o.equals(tOpen))
 				openDocument();
