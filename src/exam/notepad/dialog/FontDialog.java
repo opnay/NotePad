@@ -84,27 +84,29 @@ public class FontDialog extends JDialog {
 		listFontStyle = new JList<String>(FONT_STYLE);
 		listFontSize = new JList<String>(FONT_SIZE);
 		
-		scrollFontName = new JScrollPane(listFontName);
-		scrollFontSize = new JScrollPane(listFontSize);
-		
-		scrollFontName.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		scrollFontSize.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-		
-		listFontName.setVisibleRowCount(10);
-		listFontSize.setVisibleRowCount(10);
+		listFontName.setVisibleRowCount(14);
+		listFontSize.setVisibleRowCount(14);
 		
 		listFontName.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listFontStyle.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		listFontSize.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+
+		scrollFontName = new JScrollPane(listFontName);
+		scrollFontSize = new JScrollPane(listFontSize);
+		
+		scrollFontName.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollFontName.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+		scrollFontSize.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+		scrollFontSize.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		
 		listFontName.addListSelectionListener(new ListHandler());
 		listFontStyle.addListSelectionListener(new ListHandler());
 		listFontSize.addListSelectionListener(new ListHandler());
 		
 		pList = new JPanel(new GridLayout(0, 3, 10, 10));
-		pList.add(listFontName);
+		pList.add(scrollFontName);
 		pList.add(listFontStyle);
-		pList.add(listFontSize);
+		pList.add(scrollFontSize);
 		
 		// 버튼
 		btnOk = new JButton("확인");
