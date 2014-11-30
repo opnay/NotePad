@@ -35,6 +35,8 @@ import javax.swing.text.Document;
 import javax.swing.undo.CannotUndoException;
 import javax.swing.undo.UndoManager;
 
+import exam.notepad.dialog.FindDialog;
+
 public class NotePad extends JFrame {
 	
 	private JMenuBar menubar = new JMenuBar();
@@ -355,6 +357,10 @@ public class NotePad extends JFrame {
 		mClipboard.setContents(selection,selection);
 	}
 	
+	public JTextArea getTxtArea() {
+		return txtArea;
+	}
+	
 	class EventHandler implements	ActionListener {
 
 		@Override
@@ -413,7 +419,8 @@ public class NotePad extends JFrame {
 			}
 			
 			// 찾기
-			if(o.equals(mFind));
+			if(o.equals(mFind))
+				new FindDialog(NotePad.this);
 			
 			// 전체선택
 			if(o.equals(mSelectAll)) {
