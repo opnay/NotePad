@@ -191,15 +191,7 @@ public class FindDialog extends JDialog {
 	}
 	
 	public void add(Component component, int x, int y, int width, int height, double weightx, double weighty, int fill) {
-		gridbagConstraints.gridx = x;
-		gridbagConstraints.gridy = y;
-		gridbagConstraints.gridwidth = width;
-		gridbagConstraints.gridheight = height;
-		gridbagConstraints.weightx = weightx;
-		gridbagConstraints.weighty = weighty;
-		gridbagConstraints.fill = fill;
-		gridbagConstraints.insets = new Insets(15, 15, 15, 15);
-		add(component, gridbagConstraints);
+		add(component, x, y, width, height, weightx, weighty, fill, new Insets(15, 15, 15, 15));
 	}
 	
 	public void add(Component component, int x, int y, int width, int height, double weightx, double weighty, int fill, Insets inset) {
